@@ -1,31 +1,24 @@
 import { Test } from "@/components/test"
 import { DataTable } from "./components/data-table"
-import { Columns } from "./components/columns"
+import { columns } from "./components/columns"
+import { GetTickets } from "@/actions/get-tickets";
 
-const FetchData = async () => {
-  try {
-    const response = await fetch("https://wwwcirbitdk.repairshopr.com/api/v1/tickets", {
-      headers: {
-        Authorization: `Teec2ed7678c363492-37d177438541b14a9fe070276c41e86e`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data.tickets;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }}
 export default async function DemoPage() {
-  const data = await FetchData();
+  const data = await GetTickets();
 
   return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={Columns} data={data}/>
-      <Test />
+    <div className="flex-1 flex-col space-y-8 p-8 md:flex">
+      <div className="flex items-center justify-between space-y-2">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight">Tickets</h2>
+          <p className="text-muted-foreground">
+            Her er en liste af tickets
+          </p>
+        </div>
+        <div className="flex items-center space-x-2">
+        </div>
+      </div>
+      <DataTable data={data} columns={columns} />
     </div>
   ) 
 }

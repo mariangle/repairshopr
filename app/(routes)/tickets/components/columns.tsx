@@ -6,15 +6,15 @@ import { RowActions } from "./data-table-row-actions"
 import { issues, priorities, statuses } from "../data/data"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { Badge } from "@/components/ui/badge"
-
+import { FormattedDate } from "@/components/formatted-date"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
-export const Columns: ColumnDef<Ticket>[] = [
+export const columns: ColumnDef<Ticket>[] = [
   {
-    accessorKey: "id",
-    header: "Ticket",
+    accessorKey: "number",
+    header: "#",
   },
   {
     accessorKey: "customer_business_then_name",
@@ -72,18 +72,12 @@ export const Columns: ColumnDef<Ticket>[] = [
   {
     accessorKey: "updated_at",
     header: "Updated At",
-    cell: ({ row }) => {
-      const date = row.getValue("updated_at")
-      return (
-        <div>
-          {date}
-        </div>
-      )
-    }
+    cell: ({ row }) => <FormattedDate date={row.getValue("updated_at") as string} />,
   },
   {
     accessorKey: "due_date",
     header: "Due Date",
+    cell: ({ row }) => <FormattedDate date={row.getValue("due_date") as string} />,
   },
   {
     accessorKey: "priority",

@@ -4,6 +4,7 @@ import { z } from "zod"
 // IRL, you will have a schema for your data models.
 export const ticketSchema = z.object({
   id: z.string(),
+  number: z.string(),
   problem_type: z.string(),
   customer_business_then_name: z.string(),
   subject: z.string(),
