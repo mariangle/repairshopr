@@ -30,34 +30,43 @@ export const types = [
 
 export const issues = [
     {
-      value: "odense",
-      label: "Odense",
-    },  
-    {
-      value: "aabenraa",
+      value: "Aabenraa",
       label: "Aabenraa",
     },  
+    {
+      value: "Odense",
+      label: "Odense",
+    },
+    {
+      value: "Other",
+      label: "Andet",
+    },
 ]
 
 export const statuses = [
   {
-    value: "backlog",
-    label: "Backlog",
-    icon: QuestionMarkCircledIcon,
-  },
-  {
-    value: "todo",
-    label: "Todo",
+    value: "New",
+    label: "Ny",
     icon: CircleIcon,
   },
   {
-    value: "in progress",
-    label: "In Progress",
+    value: "Klar til afregning",
+    label: "Afventer afregning",
     icon: StopwatchIcon,
   },
   {
-    value: "resolved",
-    label: "Resolved",
+    value: "Afventer Del",
+    label: "Afventer Del",
+    icon: StopwatchIcon,
+  },
+  {
+    value: "Customer Reply",
+    label: "Customer Reply",
+    icon: QuestionMarkCircledIcon,
+  },
+  {
+    value: "Resolved",
+    label: "Løst",
     icon: CheckCircledIcon,
   },
   {

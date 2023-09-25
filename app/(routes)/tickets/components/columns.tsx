@@ -11,13 +11,13 @@ import { Badge } from "@/components/ui/badge"
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
-export const columns: ColumnDef<Ticket>[] = [
+export const Columns: ColumnDef<Ticket>[] = [
   {
     accessorKey: "id",
     header: "Ticket",
   },
   {
-    accessorKey: "customer",
+    accessorKey: "customer_business_then_name",
     header: "Customer",
   },
   {
@@ -53,7 +53,7 @@ export const columns: ColumnDef<Ticket>[] = [
       <DataTableColumnHeader column={column} title="Subject" />
     ),
     cell: ({ row }) => {
-      const issue = issues.find((issue) => issue.value === row.original.issue)
+      const issue = issues.find((issue) => issue.value === row.original.problem_type)
 
       return (
         <div className="flex space-x-2">
@@ -66,20 +66,24 @@ export const columns: ColumnDef<Ticket>[] = [
     },
   },
   {
-    accessorKey: "tech",
+    accessorKey: "user.full_name",
     header: "Tech",
   },
   {
-    accessorKey: "type",
-    header: "Type",
+    accessorKey: "updated_at",
+    header: "Updated At",
+    cell: ({ row }) => {
+      const date = row.getValue("updated_at")
+      return (
+        <div>
+          {date}
+        </div>
+      )
+    }
   },
   {
     accessorKey: "due_date",
     header: "Due Date",
-  },
-  {
-    accessorKey: "last_updated",
-    header: "Last Updated",
   },
   {
     accessorKey: "priority",

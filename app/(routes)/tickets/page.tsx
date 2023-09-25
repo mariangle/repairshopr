@@ -1,27 +1,31 @@
-import path from "path"
-import { z } from "zod"
-import { promises as fs } from "fs"
-
-import { columns } from "./components/columns"
+import { Test } from "@/components/test"
 import { DataTable } from "./components/data-table"
-import { ticketSchema, Ticket } from "./data/schema"
+import { Columns } from "./components/columns"
 
-async function getData(): Promise<Ticket[]> {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "app/(routes)/tickets/data/tickets.json")
-  )
+const FetchData = async () => {
+  try {
+    const response = await fetch("https://wwwcirbitdk.repairshopr.com/api/v1/tickets", {
+      headers: {
+        Authorization: `Teec2ed7678c363492-37d177438541b14a9fe070276c41e86e`,
+      },
+    });
 
-  const tickets = JSON.parse(data.toString())
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
 
-  return z.array(ticketSchema).parse(tickets)
-}
-
+    const data = await response.json();
+    return data.tickets;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }}
 export default async function DemoPage() {
-  const data = await getData()
+  const data = await FetchData();
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={Columns} data={data}/>
+      <Test />
     </div>
   ) 
 }
