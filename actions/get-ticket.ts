@@ -15,7 +15,6 @@ export const GetTicket = async (id: string): Promise<Ticket> => {
     }
 
     const data = await response.json();
-    console.log(data.ticket)
     return data.ticket
   } catch (error) {
     console.error("Error fetching ticket:", error);

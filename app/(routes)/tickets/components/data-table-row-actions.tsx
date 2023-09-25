@@ -9,6 +9,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/components/ui/use-toast"
+
 interface RowActionsProps<T> {
     data: T,
 }
@@ -16,6 +19,8 @@ interface RowActionsProps<T> {
 export function RowActions<T> ({
     data
 } : RowActionsProps<T>) {
+  const { toast } = useToast()
+
   return (
     <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -27,8 +32,13 @@ export function RowActions<T> ({
         <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem
-            // @ts-ignore
-            onClick={() => navigator.clipboard.writeText(data.id)} 
+            onClick={() => {
+              // @ts-ignore
+              navigator.clipboard.writeText(data.id)
+              toast({
+                title: "Copied to clipboard!",
+              })
+            }}
         >
             Copy ID
         </DropdownMenuItem>

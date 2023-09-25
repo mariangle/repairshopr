@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { format } from "@/lib/format"
 
 export const FormattedDate = ({ date }: { date: string }) => {
 
@@ -13,6 +12,6 @@ export const FormattedDate = ({ date }: { date: string }) => {
     if (!isMounted) return null;
 
   return (
-    <span>{format(date)}</span>
+    <span>{date}</span>
   )
 }

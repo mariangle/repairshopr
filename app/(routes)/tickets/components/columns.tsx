@@ -10,7 +10,8 @@ import { FormattedDate } from "@/components/formatted-date"
 import Link from "next/link"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-
+import { TicketDialog } from "@/components/ticket-dialog"
+import { formatDistanceToNow } from 'date-fns';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -21,12 +22,15 @@ export const columns: ColumnDef<Ticket>[] = [
     header: "#",
     cell: ({ row }) => {
       return (
-        <Link 
-          href={`/tickets/${row.original.id}`}
-          className={cn(buttonVariants({ variant: "link" }), "px-0")}
-          >
-          {row.original.number}
-        </Link>
+        <div className="flex gap-2 items-center">
+          <Link 
+            href={`/tickets/${row.original.id}`}
+            className={cn(buttonVariants({ variant: "link" }), "px-0")}
+            >
+            {row.getValue("number")}
+          </Link>
+          <TicketDialog ticket={row.original}/>
+        </div>
       )
     },
   },
@@ -49,12 +53,7 @@ export const columns: ColumnDef<Ticket>[] = [
       }
 
       return (
-        <div className="flex w-[100px] items-center">
-          {status.icon && (
-            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
-          <span>{status.label}</span>
-        </div>
+      <Badge variant="outline">{status.label}</Badge>
       )
     },
     filterFn: (row, id, value) => {
@@ -82,7 +81,7 @@ export const columns: ColumnDef<Ticket>[] = [
   {
     accessorKey: "due_date",
     header: "Due Date",
-    cell: ({ row }) => <FormattedDate date={row.getValue("due_date") as string} />,
+    cell: ({ row }) => <FormattedDate date={formatDistanceToNow(new Date(row.original.due_date), { addSuffix: true })} />,
   },
   {
     id: "actions",

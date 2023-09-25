@@ -14,8 +14,6 @@ export default async function DemoPage() {
             Her er en liste af tickets
           </p>
         </div>
-        <div className="flex items-center space-x-2">
-        </div>
       </div>
       <DataTable data={data} columns={columns} />
     </div>

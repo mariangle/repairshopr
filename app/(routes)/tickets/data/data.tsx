@@ -1,14 +1,3 @@
-import {
-    ArrowDownIcon,
-    ArrowRightIcon,
-    ArrowUpIcon,
-    CheckCircledIcon,
-    CircleIcon,
-    CrossCircledIcon,
-    QuestionMarkCircledIcon,
-    StopwatchIcon,
-  } from "@radix-ui/react-icons"
-
 export const types = [
   {
       value: "macbook check-in",
@@ -47,31 +36,25 @@ export const statuses = [
   {
     value: "New",
     label: "Ny",
-    icon: CircleIcon,
   },
   {
     value: "Klar til afregning",
     label: "Afventer afregning",
-    icon: StopwatchIcon,
   },
   {
     value: "Afventer Del",
     label: "Afventer Del",
-    icon: StopwatchIcon,
   },
   {
     value: "Customer Reply",
     label: "Customer Reply",
-    icon: QuestionMarkCircledIcon,
   },
   {
     value: "Resolved",
     label: "Løst",
-    icon: CheckCircledIcon,
   },
   {
     value: "canceled",
     label: "Canceled",
-    icon: CrossCircledIcon,
   },
 ]

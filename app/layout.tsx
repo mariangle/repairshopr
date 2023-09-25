@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 
 import { ThemeProvider } from '@/components/theme-provider'
 import { Navbar } from '@/components/navbar'
+import { Toaster } from "@/components/ui/toaster"
 import { WidthContainer } from '@/components/ui/width-container'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -28,8 +29,11 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <WidthContainer>
-              <Navbar />
-              {children}
+              <main>
+                <Navbar />
+                {children}
+              </main>
+              <Toaster />
             </WidthContainer>
           </ThemeProvider>
       </body>
