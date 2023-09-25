@@ -1,12 +1,16 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { Ticket } from "../data/schema"
+import { Ticket } from "../../../../types/ticket"
 import { RowActions } from "./data-table-row-actions"
-import { issues, priorities, statuses } from "../data/data"
+import { issues, statuses } from "../data/data"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { Badge } from "@/components/ui/badge"
 import { FormattedDate } from "@/components/formatted-date"
+import Link from "next/link"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -15,6 +19,16 @@ export const columns: ColumnDef<Ticket>[] = [
   {
     accessorKey: "number",
     header: "#",
+    cell: ({ row }) => {
+      return (
+        <Link 
+          href={`/tickets/${row.original.id}`}
+          className={cn(buttonVariants({ variant: "link" }), "px-0")}
+          >
+          {row.original.number}
+        </Link>
+      )
+    },
   },
   {
     accessorKey: "customer_business_then_name",
@@ -66,45 +80,9 @@ export const columns: ColumnDef<Ticket>[] = [
     },
   },
   {
-    accessorKey: "user.full_name",
-    header: "Tech",
-  },
-  {
-    accessorKey: "updated_at",
-    header: "Updated At",
-    cell: ({ row }) => <FormattedDate date={row.getValue("updated_at") as string} />,
-  },
-  {
     accessorKey: "due_date",
     header: "Due Date",
     cell: ({ row }) => <FormattedDate date={row.getValue("due_date") as string} />,
-  },
-  {
-    accessorKey: "priority",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Priority" />
-    ),
-    cell: ({ row }) => {
-      const priority = priorities.find(
-        (priority) => priority.value === row.getValue("priority")
-      )
-
-      if (!priority) {
-        return null
-      }
-
-      return (
-        <div className="flex items-center">
-          {priority.icon && (
-            <priority.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
-          <span>{priority.label}</span>
-        </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
   },
   {
     id: "actions",

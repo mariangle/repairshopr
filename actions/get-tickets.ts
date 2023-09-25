@@ -1,4 +1,4 @@
-import { Ticket } from "@/app/(routes)/tickets/data/schema";
+import { Ticket } from "@/types/ticket";
 
 const url = process.env.BASE_URL + "/tickets"
 
