@@ -3,7 +3,6 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Ticket } from "../../../../types/ticket"
 import { RowActions } from "./data-table-row-actions"
-import { issues, statuses } from "../data/data"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { Badge } from "@/components/ui/badge"
 import { FormattedDate } from "@/components/formatted-date"
@@ -43,40 +42,13 @@ export const columns: ColumnDef<Ticket>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />
     ),
-    cell: ({ row }) => {
-      const status = statuses.find(
-        (status) => status.value === row.getValue("status")
-      )
-
-      if (!status) {
-        return null;
-      }
-
-      return (
-      <Badge variant="outline">{status.label}</Badge>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
+    cell: ({ row }) => <Badge variant={"outline"}>{row.original.status}</Badge>
   },
   {
     accessorKey: "subject",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Subject" />
     ),
-    cell: ({ row }) => {
-      const issue = issues.find((issue) => issue.value === row.original.problem_type)
-
-      return (
-        <div className="flex space-x-2">
-          {issue && <Badge variant="outline">{issue.label}</Badge>}
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("subject")}
-          </span>
-        </div>
-      )
-    },
   },
   {
     accessorKey: "due_date",

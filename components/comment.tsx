@@ -16,13 +16,15 @@ export const Comment: React.FC<CommentProps> = ({ comment }) => {
     <Card className="shadow-none">
       <div className="space-y-1 p-4">
         <div className="flex justify-between items-center">
-          <h4 className="text-sm font-medium leading-none">{comment.tech}</h4>
+          <h4 className="text-sm font-medium leading-none">
+            {comment.tech}         
+            <Badge variant={"outline"}>{comment.subject}</Badge>
+          </h4>
           <h6 className="text-xs font-medium leading-none">{timeAgo}</h6>
         </div>
         <p className="text-sm text-muted-foreground">
           {comment.body}
         </p>
-        <Badge>{comment.subject}</Badge>
       </div>
     </Card>
   );

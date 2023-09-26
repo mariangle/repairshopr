@@ -10,6 +10,8 @@ const Page = async ({
   }) => {
     const ticket = await GetTicket(params.id);
 
+    if (!ticket) return null;
+
     return (
       <div className="grid grid-cols-3 p-4">
         <div className="col-span-1 space-y-4">

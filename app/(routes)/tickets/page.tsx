@@ -2,8 +2,20 @@ import { DataTable } from "./components/data-table"
 import { columns } from "./components/columns"
 import { GetTickets } from "@/actions/get-tickets";
 
-export default async function DemoPage() {
-  const data = await GetTickets();
+interface IndexPageProps {
+  searchParams: {
+    query: string;
+    number: string;
+  }
+}
+
+const IndexPage: React.FC<IndexPageProps> = async ({ 
+  searchParams 
+}) => {  
+  const data = await GetTickets({
+    q: searchParams.query,
+    number: searchParams.number
+  });
 
   return (
     <div className="flex-1 flex-col space-y-8 p-4 md:flex">
@@ -19,3 +31,5 @@ export default async function DemoPage() {
     </div>
   ) 
 }
+
+export default IndexPage;

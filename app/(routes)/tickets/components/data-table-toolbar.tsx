@@ -5,9 +5,8 @@ import { Table } from "@tanstack/react-table"
 
 import { Button } from "@/components/ui/button"
 import { DataTableViewOptions } from "./data-table-view-options"
-import { TicketSearchForm } from "../../../../components/ticket-search-form"
+import { TicketSearchForm } from "@/components/ticket-search-form"
 
-import { statuses } from "../data/data"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 
 interface DataTableToolbarProps<TData> {
@@ -20,16 +19,9 @@ export function DataTableToolbar<TData>({
   const isFiltered = table.getState().columnFilters.length > 0
 
   return (
-      <div className="flex items-center justify-between">
-        <div className="flex flex-1 items-center space-x-2">
+      <div className="flex items-end justify-between">
+        <div className="flex flex-1 items-end space-x-2">
           <TicketSearchForm />
-          {table.getColumn("status") && (
-            <DataTableFacetedFilter
-              column={table.getColumn("status")}
-              title="Status"
-              options={statuses}
-            />
-          )}
           {isFiltered && (
             <Button
               variant="ghost"

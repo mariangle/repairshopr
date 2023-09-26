@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-export function Login() {
+export function LoginForm() {
   return (
     <Card className="shadow-none">
       <CardHeader className="space-y-1">
@@ -42,8 +42,9 @@ export function Login() {
           <Input id="password" type="password" />
         </div>
       </CardContent>
-      <CardFooter>
-        <Button className="w-full">Create account</Button>
+      <CardFooter className="block space-y-4">
+        <Button className="w-full">Sign In</Button>
+        <Button className="w-full" variant={"secondary"}>Sign in as Test</Button>
       </CardFooter>
     </Card>
   )

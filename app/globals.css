@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body,
+main {
+  @apply h-screen;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
