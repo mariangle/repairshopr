@@ -25,15 +25,14 @@ interface TicketDialogProps {
       <DialogTrigger asChild>
         <Info className="w-4 h-4 cursor-pointer"/>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>#{ticket.number} <Badge>{ticket.status}</Badge></DialogTitle>
           <DialogDescription>
             {ticket.subject}
           </DialogDescription>
         </DialogHeader>
-        {ticket.comments.map((comment) => <Comment comment={comment}/>)}
-
+        {ticket.comments.map((comment) => <Comment comment={comment} key={comment.id}/>)}
         <DialogFooter>
           <Link href={`/tickets/${ticket.id}`} className={buttonVariants({ variant: "default" })}>View Details</Link>
         </DialogFooter>

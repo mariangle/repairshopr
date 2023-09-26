@@ -1,7 +1,7 @@
 import { Ticket } from "@/types/ticket";
 
-export const GetTicket = async (id: string): Promise<Ticket | null> => {
-  const url = `${process.env.BASE_URL}/tickets/${id}`; 
+export const GetTicketsByNumber = async (number: string): Promise<Ticket[] | null> => {
+  const url = `${process.env.BASE_URL}/tickets?number=${number}`; 
 
   try {
     const response = await fetch(url, {
@@ -15,7 +15,7 @@ export const GetTicket = async (id: string): Promise<Ticket | null> => {
     }
 
     const data = await response.json();
-    return data.ticket
+    return data.tickets
   } catch (error) {
     return null;
   }
