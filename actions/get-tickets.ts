@@ -3,12 +3,12 @@ import qs from "query-string";
 
 interface Query {
   q?: string;
-  number: string;
+  number?: string;
 }
 
 const URL=`${process.env.BASE_URL}/tickets`;
 
-export const GetTickets = async (query?: Query) : Promise<Ticket[]> => {
+export const GetTickets = async (query?: Query): Promise<Ticket[] | null> => {
   const url = qs.stringifyUrl({
     url: URL,
     query: {
@@ -22,7 +22,9 @@ export const GetTickets = async (query?: Query) : Promise<Ticket[]> => {
       headers: {
         Authorization: process.env.API_SECRET as string,
       },
+      ...{ next: { revalidate: 0 } },
     });
+
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -30,7 +32,6 @@ export const GetTickets = async (query?: Query) : Promise<Ticket[]> => {
     const data = await response.json();
     return data.tickets;
   } catch (error) {
-    console.error("Error fetching tickets:", error);
-    throw new Error("An error occured.");
+    return null;
   }
 }

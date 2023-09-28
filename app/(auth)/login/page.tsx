@@ -1,7 +1,7 @@
-import { LoginForm } from "./components/login";
+import { LoginForm } from "./components/login-form";
 const Login = () => {
     return (
-        <div className="max-w-[23rem] mx-auto w-full my-auto h-full">
+        <div className="max-w-md grid content-center mx-auto w-full my-auto h-full">
             <LoginForm />
         </div>
     )

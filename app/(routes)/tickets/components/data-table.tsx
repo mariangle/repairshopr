@@ -29,7 +29,7 @@ import { DataTablePagination } from "./data-table-pagination"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  data: TData[] | null;
 }
 
 export function DataTable<TData, TValue>({
@@ -41,10 +41,9 @@ export function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
   const [sorting, setSorting] = React.useState<SortingState>([])
-
   
   const table = useReactTable({
-    data,
+    data: data || [],
     columns,
     state: {
       sorting,

@@ -23,7 +23,7 @@ const IndexPage: React.FC<IndexPageProps> = async ({
         <div>
           <h2 className="text-2xl font-bold tracking-tight">Tickets</h2>
           <p className="text-muted-foreground">
-            Her er en liste af tickets
+            Listen viser api'ens første side af ticket. Du kan søge på hvilken som helst ticket.
           </p>
         </div>
       </div>
