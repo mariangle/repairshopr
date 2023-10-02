@@ -8,6 +8,7 @@ import * as react from "react"
 import { Ticket } from "@/types/ticket";
 import { useApiStore } from "@/hooks/use-api-store";
 import { useRouter } from "next/navigation";
+import { useStore } from "@/hooks/use-store";
 
 interface IndexPageProps {
   searchParams: {
@@ -20,20 +21,20 @@ const IndexPage: React.FC<IndexPageProps> = ({
   searchParams 
 }) => {  
   const router = useRouter();
-
-  const { credentials, isLogged } = useApiStore();
-  const [data, setData] = react.useState<Ticket[] | null>([])
+  const apiStore = useStore(useApiStore, (store) => store);
+    const [data, setData] = react.useState<Ticket[] | null>([])
   
   react.useEffect(() => {
     const fetchData = async () => {
+      if (!apiStore) return null;
 
-      if (isLogged) {
+      if (apiStore?.isLogged) {
         const tickets = await GetTickets({
           q: searchParams.query,
           number: searchParams.number,
         }, {
-          subdomain: credentials.subdomain,
-          apiKey: credentials.apiKey
+          subdomain: apiStore.credentials.subdomain,
+          apiKey: apiStore.credentials.apiKey
         });
         setData(tickets);
       } else {
@@ -41,9 +42,10 @@ const IndexPage: React.FC<IndexPageProps> = ({
       }
     };
     fetchData();
-  }, [isLogged]);
+  }, [apiStore?.isLogged]);
 
-  if (!isLogged) return null;
+
+  if (!apiStore?.isLogged) return null;
 
   return (
     <div className="flex-1 flex-col space-y-8 p-4 md:flex">

@@ -1,5 +1,5 @@
-export const ValidateCredentials = async (subdomain: string, apiKey: string) => {
-  const url = `https://${subdomain}.repairshopr.com/api/v1/tickets`; 
+export const GetUser = async (subdomain: string, apiKey: string) => {
+  const url = `https://${subdomain}.repairshopr.com/api/v1/me`; 
 
   try {
     const response = await fetch(url, {
@@ -14,7 +14,6 @@ export const ValidateCredentials = async (subdomain: string, apiKey: string) => 
     }
 
     const data = await response.json();
-    console.log(data)
     return data
   } catch (error) {
     return null;

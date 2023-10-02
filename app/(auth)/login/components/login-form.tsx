@@ -23,8 +23,10 @@ import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ValidateCredentials } from "@/actions/validate-credentials"
+import { GetUser } from "@/actions/get-user"
 import { useApiStore } from "@/hooks/use-api-store"
+import { useRouter } from "next/navigation"
+import { useStore } from "@/hooks/use-store"
 
 const formSchema = z.object({
   subdomain: z.string().min(2).max(80),
@@ -34,8 +36,11 @@ const formSchema = z.object({
 type LoginFormValues = z.infer<typeof formSchema>
 
 export const LoginForm = () => {
+  const router = useRouter();
   const { toast } = useToast();
-  const apiStore = useApiStore();
+
+  const apiStore = useStore(useApiStore, (store) => store);
+
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(formSchema),
@@ -44,11 +49,12 @@ export const LoginForm = () => {
       apiKey: ""
     },
   })
+  if (!apiStore) return null;
 
   const onSubmit = async (values: LoginFormValues) => {
-    const response = await ValidateCredentials(values.subdomain, values.apiKey)
+    const user = await GetUser(values.subdomain, values.apiKey)
 
-    if (response === null) {
+    if (user === null) {
       toast({
         variant: "destructive",
         title: "Oops! Something went wrong.",
@@ -61,9 +67,24 @@ export const LoginForm = () => {
       });
       apiStore.setCredentials(values);
       apiStore.setIsLogged(true);
+      apiStore.setUser({
+        isAdmin: user.admin,
+        email: user.user_email,
+        name: user.user_name,
+      });
+      router.push("/tickets")
     }    
   }
   
+  const onTestUser = () => {
+    apiStore.setIsLogged(true);
+    apiStore.setUser({
+      isAdmin: true,
+      email: "test@email.com",
+      name: "John Doe",
+    });
+    router.push("/tickets")
+  }
 
   return (
     <Card className="shadow-none ">
