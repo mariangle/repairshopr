@@ -4,7 +4,7 @@ const nextConfig = {
     env: {
       BASE_URL: process.env.BASE_URL,
       API_SECRET: process.env.API_SECRET,
-    }
+    },
 }
 
 module.exports = nextConfig

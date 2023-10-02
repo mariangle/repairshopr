@@ -32,7 +32,7 @@ interface TicketDialogProps {
             {ticket.subject}
           </DialogDescription>
         </DialogHeader>
-        {ticket.comments.map((comment) => <Comment comment={comment} key={comment.id}/>)}
+        {ticket.comments?.map((comment) => <Comment comment={comment} key={comment.id}/>)}
         <DialogFooter>
           <Link href={`/tickets/${ticket.id}`} className={buttonVariants({ variant: "default" })}>View Details</Link>
         </DialogFooter>

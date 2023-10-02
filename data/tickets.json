@@ -1,0 +1,465 @@
+[
+  {
+    "id": "73434357",
+    "number": "17523",
+    "problem_type": "odense",
+    "customer_business_then_name": "Smith Jewelry",
+    "subject": "iPad Battery Replacement",
+    "status": "in progress",
+    "type": "macbook check-in",
+    "updated_at": "2019-11-04T08:59:31.034Z",
+    "created_at": "2019-11-04T08:59:31.034Z",
+    "last_updated": "2019-11-04T08:59:31.034Z",
+    "due_date": "2019-11-04T08:59:31.034Z",
+    "priority": "medium",
+    "comments": [
+      {
+        "id": "1",
+        "created_at": "2019-11-04T08:59:31.034Z",
+        "subject": "Initial Issue",
+        "body": "iPad Battery Replacement",
+        "tech": "Lars",
+        "hidden": false
+      },
+      {
+        "id": "2",
+        "created_at": "2019-11-04T08:59:31.034Z",
+        "subject": "Update",
+        "body": "Email has been sent to jane.smith@email.com",
+        "tech": "Christian",
+        "hidden": false
+      },
+      {
+        "id": "3",
+        "created_at": "2019-11-04T08:59:31.034Z",
+        "subject": "Diagnosis",
+        "body": "Battery is fried",
+        "tech": "Lars",
+        "hidden": false
+      }
+    ],
+    "user": {
+      "full_name": "John Doe",
+      "email": "johndoe@email.com",
+      "id": "12345"
+    },
+    "customer": {
+      "id": "2521",
+      "firstname": "Jane",
+      "lastname": "Smith",
+      "fullname": "Jane Smith",
+      "business_name": "Smith Jewelry",
+      "email": "jane.smith@email.com",
+      "phone": "28192817",
+      "address": "123 Main St",
+      "city": "Austin",
+      "state": "Texas",
+      "zip": "78701"
+    }
+  },
+  {
+    "id": "73434358",
+    "number": "17524",
+    "problem_type": "copenhagen",
+    "customer_business_then_name": "Robert Johnson",
+    "subject": "iPhone Screen Replacement",
+    "status": "open",
+    "type": "smartphone check-in",
+    "updated_at": "2019-11-05T10:00:00.034Z",
+    "created_at": "2019-11-05T10:00:00.034Z",
+    "last_updated": "2019-11-05T10:00:00.034Z",
+    "due_date": "2019-11-10T12:00:00.034Z",
+    "priority": "high",
+    "comments": [
+      {
+        "id": "4",
+        "created_at": "2019-11-05T10:00:00.034Z",
+        "subject": "Initial Issue",
+        "body": "iPhone screen cracked",
+        "tech": "Sarah",
+        "hidden": false
+      },
+      {
+        "id": "5",
+        "created_at": "2019-11-05T10:00:00.034Z",
+        "subject": "Update",
+        "body": "Customer prefers expedited service.",
+        "tech": "Mike",
+        "hidden": false
+      }
+    ],
+    "user": {
+      "full_name": "Alice Johnson",
+      "email": "alice.johnson@email.com",
+      "id": "67890"
+    },
+    "customer": {
+      "id": "2522",
+      "firstname": "Robert",
+      "lastname": "Johnson",
+      "fullname": "Robert Johnson",
+      "business_name": "",
+      "email": "robert.johnson@email.com",
+      "phone": "55512345",
+      "address": "456 Elm St",
+      "city": "Copenhagen",
+      "state": "Hovedstaden",
+      "zip": "12345"
+    }
+  },
+  {
+    "id": "73434359",
+    "number": "17525",
+    "problem_type": "aarhus",
+    "customer_business_then_name": "John Smith",
+    "subject": "Washing Machine Repair",
+    "status": "closed",
+    "type": "appliance check-in",
+    "updated_at": "2019-11-06T15:30:00.034Z",
+    "created_at": "2019-11-06T15:30:00.034Z",
+    "last_updated": "2019-11-06T15:30:00.034Z",
+    "due_date": "2019-11-07T09:00:00.034Z",
+    "priority": "low",
+    "comments": [
+      {
+        "id": "6",
+        "created_at": "2019-11-06T15:30:00.034Z",
+        "subject": "Initial Issue",
+        "body": "Washing machine not draining properly.",
+        "tech": "David",
+        "hidden": false
+      },
+      {
+        "id": "7",
+        "created_at": "2019-11-06T15:30:00.034Z",
+        "subject": "Diagnosis",
+        "body": "Replaced the drain pump.",
+        "tech": "David",
+        "hidden": false
+      },
+      {
+        "id": "8",
+        "created_at": "2019-11-06T15:30:00.034Z",
+        "subject": "Resolution",
+        "body": "Washing machine now working properly.",
+        "tech": "David",
+        "hidden": false
+      }
+    ],
+    "user": {
+      "full_name": "Emma Smith",
+      "email": "emma.smith@email.com",
+      "id": "54321"
+    },
+    "customer": {
+      "id": "2523",
+      "firstname": "John",
+      "lastname": "Smith",
+      "fullname": "John Smith",
+      "business_name": "",
+      "email": "john.smith@email.com",
+      "phone": "98765432",
+      "address": "789 Oak St",
+      "city": "Aarhus",
+      "state": "Midtjylland",
+      "zip": "54321"
+    }
+  },
+  {
+    "id": "73434360",
+    "number": "17526",
+    "problem_type": "copenhagen",
+    "customer_business_then_name": "Tech Solutions Inc.",
+    "subject": "Laptop Keyboard Replacement",
+    "status": "open",
+    "type": "laptop check-in",
+    "updated_at": "2019-11-07T13:45:00.034Z",
+    "created_at": "2019-11-07T13:45:00.034Z",
+    "last_updated": "2019-11-07T13:45:00.034Z",
+    "due_date": "2019-11-12T10:30:00.034Z",
+    "priority": "high",
+    "comments": [],
+    "user": {
+      "full_name": "Mark Smith",
+      "email": "mark.smith@email.com",
+      "id": "98765"
+    },
+    "customer": {
+      "id": "2524",
+      "firstname": "Jennifer",
+      "lastname": "Johnson",
+      "fullname": "Jennifer Johnson",
+      "business_name": "Tech Solutions Inc.",
+      "email": "jennifer.johnson@email.com",
+      "phone": "55598765",
+      "address": "123 Main St",
+      "city": "Copenhagen",
+      "state": "Hovedstaden",
+      "zip": "54321"
+    }
+  },
+  {
+    "id": "73434361",
+    "number": "17527",
+    "problem_type": "aarhus",
+    "customer_business_then_name": "Michael Smith",
+    "subject": "Car Engine Inspection",
+    "status": "in progress",
+    "type": "auto check-in",
+    "updated_at": "2019-11-08T08:15:00.034Z",
+    "created_at": "2019-11-08T08:15:00.034Z",
+    "last_updated": "2019-11-08T08:15:00.034Z",
+    "due_date": "2019-11-13T14:00:00.034Z",
+    "priority": "medium",
+    "comments": [],
+    "user": {
+      "full_name": "John Doe",
+      "email": "john.doe@email.com",
+      "id": "12345"
+    },
+    "customer": {
+      "id": "2525",
+      "firstname": "Michael",
+      "lastname": "Smith",
+      "fullname": "Michael Smith",
+      "business_name": "",
+      "email": "michael.smith@email.com",
+      "phone": "77712345",
+      "address": "456 Oak St",
+      "city": "Aarhus",
+      "state": "Midtjylland",
+      "zip": "67890"
+    }
+  },
+  {
+    "id": "73434362",
+    "number": "17528",
+    "problem_type": "odense",
+    "customer_business_then_name": "Daniel Smith",
+    "subject": "TV Screen Repair",
+    "status": "open",
+    "type": "electronics check-in",
+    "updated_at": "2019-11-09T11:30:00.034Z",
+    "created_at": "2019-11-09T11:30:00.034Z",
+    "last_updated": "2019-11-09T11:30:00.034Z",
+    "due_date": "2019-11-14T09:45:00.034Z",
+    "priority": "high",
+    "comments": [],
+    "user": {
+      "full_name": "Emily Smith",
+      "email": "emily.smith@email.com",
+      "id": "56789"
+    },
+    "customer": {
+      "id": "2526",
+      "firstname": "Daniel",
+      "lastname": "Smith",
+      "fullname": "Daniel Smith",
+      "business_name": "",
+      "email": "daniel.smith@email.com",
+      "phone": "55556789",
+      "address": "789 Elm St",
+      "city": "Odense",
+      "state": "Syddanmark",
+      "zip": "23456"
+    }
+  },
+  {
+    "id": "73434363",
+    "number": "17529",
+    "problem_type": "aarhus",
+    "customer_business_then_name": "Johnson Plumbing",
+    "subject": "Leaky Faucet Repair",
+    "status": "closed",
+    "type": "plumbing check-in",
+    "updated_at": "2019-11-10T14:20:00.034Z",
+    "created_at": "2019-11-10T14:20:00.034Z",
+    "last_updated": "2019-11-10T14:20:00.034Z",
+    "due_date": "2019-11-15T16:30:00.034Z",
+    "priority": "low",
+    "comments": [],
+    "user": {
+      "full_name": "James Johnson",
+      "email": "james.johnson@email.com",
+      "id": "33333"
+    },
+    "customer": {
+      "id": "2527",
+      "firstname": "Sarah",
+      "lastname": "Johnson",
+      "fullname": "Sarah Johnson",
+      "business_name": "Johnson Plumbing",
+      "email": "sarah.johnson@email.com",
+      "phone": "99933333",
+      "address": "123 Oak St",
+      "city": "Aarhus",
+      "state": "Midtjylland",
+      "zip": "54321"
+    }
+  },
+  {
+    "id": "73434364",
+    "number": "17530",
+    "problem_type": "copenhagen",
+    "customer_business_then_name": "Michael Davis",
+    "subject": "Desktop PC Repair",
+    "status": "in progress",
+    "type": "pc check-in",
+    "updated_at": "2019-11-11T09:15:00.034Z",
+    "created_at": "2019-11-11T09:15:00.034Z",
+    "last_updated": "2019-11-11T09:15:00.034Z",
+    "due_date": "2019-11-16T11:45:00.034Z",
+    "priority": "medium",
+    "comments": [],
+    "user": {
+      "full_name": "Anna Brown",
+      "email": "anna.brown@email.com",
+      "id": "44444"
+    },
+    "customer": {
+      "id": "2528",
+      "firstname": "Michael",
+      "lastname": "Davis",
+      "fullname": "Michael Davis",
+      "business_name": "Tech Innovations",
+      "email": "michael.davis@email.com",
+      "phone": "88844444",
+      "address": "456 Elm St",
+      "city": "Copenhagen",
+      "state": "Hovedstaden",
+      "zip": "67890"
+    }
+  },
+  {
+    "id": "73434365",
+    "number": "17531",
+    "problem_type": "odense",
+    "customer_business_then_name": "Smith Home Repairs",
+    "subject": "HVAC System Maintenance",
+    "status": "open",
+    "type": "home-check-in",
+    "updated_at": "2019-11-12T12:30:00.034Z",
+    "created_at": "2019-11-12T12:30:00.034Z",
+    "last_updated": "2019-11-12T12:30:00.034Z",
+    "due_date": "2019-11-17T13:15:00.034Z",
+    "priority": "high",
+    "comments": [],
+    "user": {
+      "full_name": "David Smith",
+      "email": "david.smith@email.com",
+      "id": "55555"
+    },
+    "customer": {
+      "id": "2529",
+      "firstname": "Lisa",
+      "lastname": "Smith",
+      "fullname": "Lisa Smith",
+      "business_name": "Smith Home Repairs",
+      "email": "lisa.smith@email.com",
+      "phone": "77755555",
+      "address": "789 Oak St",
+      "city": "Odense",
+      "state": "Syddanmark",
+      "zip": "23456"
+    }
+  },
+  {
+    "id": "73434366",
+    "number": "17532",
+    "problem_type": "copenhagen",
+    "customer_business_then_name": "Jennifer Johnson",
+    "subject": "Laptop Screen Replacement",
+    "status": "open",
+    "type": "laptop check-in",
+    "updated_at": "2019-11-13T15:00:00.034Z",
+    "created_at": "2019-11-13T15:00:00.034Z",
+    "last_updated": "2019-11-13T15:00:00.034Z",
+    "due_date": "2019-11-18T09:30:00.034Z",
+    "priority": "medium",
+    "comments": [],
+    "user": {
+      "full_name": "Mark Smith",
+      "email": "mark.smith@email.com",
+      "id": "98765"
+    },
+    "customer": {
+      "id": "2530",
+      "firstname": "Jennifer",
+      "lastname": "Johnson",
+      "fullname": "Jennifer Johnson",
+      "business_name": "",
+      "email": "jennifer.johnson@email.com",
+      "phone": "55598765",
+      "address": "123 Main St",
+      "city": "Copenhagen",
+      "state": "Hovedstaden",
+      "zip": "54321"
+    }
+  },
+  {
+    "id": "73434367",
+    "number": "17533",
+    "problem_type": "aarhus",
+    "customer_business_then_name": "Smith Auto Repair",
+    "subject": "Car Brake Repair",
+    "status": "in progress",
+    "type": "auto check-in",
+    "updated_at": "2019-11-14T09:45:00.034Z",
+    "created_at": "2019-11-14T09:45:00.034Z",
+    "last_updated": "2019-11-14T09:45:00.034Z",
+    "due_date": "2019-11-19T12:15:00.034Z",
+    "priority": "high",
+    "comments": [],
+    "user": {
+      "full_name": "John Doe",
+      "email": "john.doe@email.com",
+      "id": "12345"
+    },
+    "customer": {
+      "id": "2531",
+      "firstname": "Michael",
+      "lastname": "Smith",
+      "fullname": "Michael Smith",
+      "business_name": "Smith Auto Repair",
+      "email": "michael.smith@email.com",
+      "phone": "77712345",
+      "address": "456 Oak St",
+      "city": "Aarhus",
+      "state": "Midtjylland",
+      "zip": "67890"
+    }
+  },
+  {
+    "id": "73434368",
+    "number": "17534",
+    "problem_type": "odense",
+    "customer_business_then_name": "Daniel Smith",
+    "subject": "TV Screen Repair",
+    "status": "open",
+    "type": "electronics check-in",
+    "updated_at": "2019-11-15T12:30:00.034Z",
+    "created_at": "2019-11-15T12:30:00.034Z",
+    "last_updated": "2019-11-15T12:30:00.034Z",
+    "due_date": "2019-11-20T14:45:00.034Z",
+    "priority": "medium",
+    "comments": [],
+    "user": {
+      "full_name": "Emily Smith",
+      "email": "emily.smith@email.com",
+      "id": "56789"
+    },
+    "customer": {
+      "id": "2532",
+      "firstname": "Daniel",
+      "lastname": "Smith",
+      "fullname": "Daniel Smith",
+      "business_name": "",
+      "email": "daniel.smith@email.com",
+      "phone": "55556789",
+      "address": "789 Elm St",
+      "city": "Odense",
+      "state": "Syddanmark",
+      "zip": "23456"
+    }
+  }
+]

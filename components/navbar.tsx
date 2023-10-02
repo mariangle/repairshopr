@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuItem,
@@ -12,7 +13,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { ModeToggle } from "@/components/mode-toggle"
-import { buttonVariants } from "@/components/ui/button"
 import { useApiStore } from "@/hooks/use-api-store"
 import Link from "next/link"
 import { useStore } from "@/hooks/use-store"
@@ -28,7 +28,9 @@ export const Navbar = () => {
 
   return (
     <nav className="flex justify-between p-4 sticky top-0">
-      <Link href={"/tickets"}>Tickets</Link>
+      <div>
+      { apiStore.isLogged && <Link href={"/tickets"}>{apiStore.credentials.subdomain}</Link>}
+      </div>
       <div className="flex gap-2 items-center">
         <ModeToggle />
         { apiStore.isLogged ? (

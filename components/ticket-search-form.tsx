@@ -19,6 +19,8 @@ import { useForm } from "react-hook-form";
 import qs from "query-string";
 import * as z from "zod";
 import * as react from "react";
+import { useStore } from "@/hooks/use-store";
+import { useApiStore } from "@/hooks/use-api-store";
 
 const formSchema = z.object({
   query: z
@@ -30,6 +32,7 @@ type SearchFormValues = z.infer<typeof formSchema>;
 
 export const TicketSearchForm = () => {
   const { toast } = useToast();
+  const apiStore = useStore(useApiStore, (state) => state);
   const [isLoading, setisLoading] = react.useState<boolean>(false);
   const router = useRouter();
 
@@ -41,29 +44,37 @@ export const TicketSearchForm = () => {
   });
 
   const onSubmit = async (data: SearchFormValues) => {
-    setisLoading(true);
-    const queryParams = { query: data.query };
-    const queryString = qs.stringify(queryParams);
+    if (!apiStore?.isTestUser){
+      setisLoading(true);
+      const queryParams = { query: data.query };
+      const queryString = qs.stringify(queryParams);
+      
+      try {
+        const tickets = await GetTickets({ q: data.query });
     
-    try {
-      const tickets = await GetTickets({ q: data.query });
-  
-      if (!tickets?.length) {
-        throw new Error("Ingen tickets blev fundet med disse oplysninger.");
-      }
-  
-      router.push(`/tickets?${queryString}`);
-    } catch (error) {
-      if (error instanceof Error){
-        toast({
-          title: "Ingen tickets fundet.",
-          description: error.message,
-          variant: "destructive",
-        });
+        if (!tickets?.length) {
+          throw new Error("Ingen tickets blev fundet med disse oplysninger.");
+        }
+    
         router.push(`/tickets?${queryString}`);
+      } catch (error) {
+        if (error instanceof Error){
+          toast({
+            title: "Ingen tickets fundet.",
+            description: error.message,
+            variant: "destructive",
+          });
+          router.push(`/tickets?${queryString}`);
+        }
+      } finally {
+        setisLoading(false);
       }
-    } finally {
-      setisLoading(false);
+    }  else {
+      toast({
+        title: "Oops.",
+        description: "This feature only works when logging in.",
+        variant: "destructive",
+      });
     }
   };
 

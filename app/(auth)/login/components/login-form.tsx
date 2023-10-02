@@ -21,7 +21,8 @@ import { BsInfoCircle } from "react-icons/bs"
 import { Button } from "@/components/ui/button"
 
 import { useForm } from "react-hook-form"
-import * as z from "zod"
+import * as z from "zod";
+import { TestUser, TestCredentials} from "@/data/test-user-data"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { GetUser } from "@/actions/get-user"
 import { useApiStore } from "@/hooks/use-api-store"
@@ -38,9 +39,7 @@ type LoginFormValues = z.infer<typeof formSchema>
 export const LoginForm = () => {
   const router = useRouter();
   const { toast } = useToast();
-
   const apiStore = useStore(useApiStore, (store) => store);
-
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(formSchema),
@@ -49,6 +48,7 @@ export const LoginForm = () => {
       apiKey: ""
     },
   })
+  
   if (!apiStore) return null;
 
   const onSubmit = async (values: LoginFormValues) => {
@@ -57,7 +57,7 @@ export const LoginForm = () => {
     if (user === null) {
       toast({
         variant: "destructive",
-        title: "Oops! Something went wrong.",
+        title: "Oops! Something went wrong.", 
         description: "Please verify your credentials.",
       });    
     } else {
@@ -65,30 +65,24 @@ export const LoginForm = () => {
         title: "Success!",
         description: "You have successfully logged in.",
       });
-      apiStore.setCredentials(values);
-      apiStore.setIsLogged(true);
-      apiStore.setUser({
+      apiStore.login(values, {
         isAdmin: user.admin,
-        email: user.user_email,
         name: user.user_name,
-      });
+        email: user.user_email
+      }, false)
       router.push("/tickets")
     }    
   }
   
   const onTestUser = () => {
-    apiStore.setIsLogged(true);
-    apiStore.setUser({
-      isAdmin: true,
-      email: "test@email.com",
-      name: "John Doe",
-    });
+    apiStore.login(TestCredentials, TestUser, true);
     router.push("/tickets")
   }
 
   return (
     <Card className="shadow-none ">
       <CardHeader className="space-y-2 flex flex-col items-center my-4">
+        {}
         <CardTitle className="text-xl">Sign in to repairshopr</CardTitle>
         <CardDescription>Sign in using with your repairshopr subdomain and api key</CardDescription>
       </CardHeader>
@@ -136,7 +130,10 @@ export const LoginForm = () => {
             </span>
           </div>
         </div>        
-        <Button variant={"outline"} className="w-full gap-2">
+        <Button 
+          variant={"outline"} 
+          className="w-full gap-2"
+          onClick={onTestUser}>
             Test User
             <BsInfoCircle />
         </Button>

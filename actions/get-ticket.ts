@@ -1,12 +1,12 @@
 import { Ticket } from "@/types/ticket";
-
-export const GetTicket = async (id: string): Promise<Ticket | null> => {
-  const url = `${process.env.BASE_URL}/tickets/${id}`; 
+import { Credentials } from "@/hooks/use-api-store";
+export const GetTicket = async (id: string, credentials: Credentials): Promise<Ticket | null> => {
+  const url = `https://${credentials?.subdomain}.repairshopr.com/api/v1/tickets/${id}`; 
 
   try {
     const response = await fetch(url, {
       headers: {
-        Authorization: process.env.API_SECRET as string,
+        Authorization: credentials?.apiKey as string,
       },
     });
 

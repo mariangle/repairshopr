@@ -5,12 +5,12 @@ import { persist, createJSONStorage } from "zustand/middleware";
 
 // https://docs.pmnd.rs/zustand/integrations/persisting-store-data
 
-interface Credentials {
+export type Credentials = {
   subdomain: string;
   apiKey: string;
 }
 
-interface User {
+export type User = {
   isAdmin: boolean;
   email: string;
   name: string;
@@ -21,11 +21,8 @@ interface apiStore {
   credentials: Credentials;
   isLogged: boolean;
   isTestUser: boolean;
-  setUser: (user: User) => void;
-  setIsTestUser: (isTestUser: boolean) => void;
-  setIsLogged: (isLogged: boolean) => void;
-  setCredentials: (credentials: Credentials) => void;
   logout: () => void;
+  login: (credentials: Credentials, user: User, isTestUser: boolean) => void;
 }
 
 export const useApiStore = create(
@@ -34,19 +31,27 @@ export const useApiStore = create(
     credentials: { subdomain: '', apiKey: '' },
     isLogged: false,
     isTestUser: false,
-    setIsTestUser: (isTestUser) => set({ isTestUser }),
-    setIsLogged: (isLogged) => set({ isLogged }),
-    setUser: (user) => set({ user }),
-    setCredentials: (credentials) => set({ credentials }),
     logout: () => {
       set({
         isLogged: false,
         isTestUser: false,
+        credentials: {
+          subdomain: '',
+          apiKey: '',
+        },
         user: {
           isAdmin: false,
           email: '',
           name: ''
         }
+      });
+    },
+    login: (credentials: Credentials, user: User, isTestUser: boolean) => { 
+      set({
+        isLogged: true,
+        isTestUser: isTestUser,
+        user: user,
+        credentials: credentials,
       });
     }
   }), {

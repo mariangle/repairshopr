@@ -1,13 +1,10 @@
 import { Ticket } from "@/types/ticket";
 import qs from "query-string";
+import { Credentials } from "@/hooks/use-api-store";
 
 interface Query {
   q?: string;
   number?: string;
-}
-type Credentials = {
-  subdomain: string,
-  apiKey: string,
 }
 
 export const GetTickets = async (query?: Query, credentials?: Credentials): Promise<Ticket[] | null> => {
