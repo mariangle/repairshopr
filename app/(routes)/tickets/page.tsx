@@ -1,6 +1,13 @@
+"use client"
+
 import { DataTable } from "./components/data-table"
 import { columns } from "./components/columns"
 import { GetTickets } from "@/actions/get-tickets";
+
+import * as react from "react"
+import { Ticket } from "@/types/ticket";
+import { useApiStore } from "@/hooks/use-api-store";
+import { useRouter } from "next/navigation";
 
 interface IndexPageProps {
   searchParams: {
@@ -9,13 +16,34 @@ interface IndexPageProps {
   }
 }
 
-const IndexPage: React.FC<IndexPageProps> = async ({ 
+const IndexPage: React.FC<IndexPageProps> = ({ 
   searchParams 
 }) => {  
-  const data = await GetTickets({
-    q: searchParams.query,
-    number: searchParams.number
-  });
+  const router = useRouter();
+
+  const { credentials, isLogged } = useApiStore();
+  const [data, setData] = react.useState<Ticket[] | null>([])
+  
+  react.useEffect(() => {
+    const fetchData = async () => {
+
+      if (isLogged) {
+        const tickets = await GetTickets({
+          q: searchParams.query,
+          number: searchParams.number,
+        }, {
+          subdomain: credentials.subdomain,
+          apiKey: credentials.apiKey
+        });
+        setData(tickets);
+      } else {
+        router.push("/login");
+      }
+    };
+    fetchData();
+  }, [isLogged]);
+
+  if (!isLogged) return null;
 
   return (
     <div className="flex-1 flex-col space-y-8 p-4 md:flex">

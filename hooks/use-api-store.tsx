@@ -11,7 +11,7 @@ interface useApiStore {
   credentials: Credentials;
   isLogged: boolean;
   isTestUser: boolean;
-  setIsLogged: () => void;
+  setIsLogged: (isLogged: boolean) => void;
   setCredentials: (credentials: Credentials) => void;
 }
 
@@ -19,7 +19,7 @@ export const useApiStore = create<useApiStore>((set) => ({
   credentials: { subdomain: '', apiKey: '' },
   isLogged: false,
   isTestUser: false,
-  setIsLogged: () => set({ isLogged: true }),
+  setIsLogged: (isLogged: boolean) => set({ isLogged }),
   setCredentials: (credentials: Credentials) => set({ credentials }),
 }));
 

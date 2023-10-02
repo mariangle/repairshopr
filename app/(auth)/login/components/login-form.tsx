@@ -60,6 +60,7 @@ export const LoginForm = () => {
         description: "You have successfully logged in.",
       });
       apiStore.setCredentials(values);
+      apiStore.setIsLogged(true);
     }    
   }
   

@@ -5,12 +5,14 @@ interface Query {
   q?: string;
   number?: string;
 }
+type Credentials = {
+  subdomain: string,
+  apiKey: string,
+}
 
-const URL=`${process.env.BASE_URL}/tickets`;
-
-export const GetTickets = async (query?: Query): Promise<Ticket[] | null> => {
+export const GetTickets = async (query?: Query, credentials?: Credentials): Promise<Ticket[] | null> => {
   const url = qs.stringifyUrl({
-    url: URL,
+    url: `https://${credentials?.subdomain}.repairshopr.com/api/v1/tickets`,
     query: {
       query: query?.q,
       number: query?.number
@@ -20,7 +22,7 @@ export const GetTickets = async (query?: Query): Promise<Ticket[] | null> => {
   try {
     const response = await fetch(url, {
       headers: {
-        Authorization: process.env.API_SECRET as string,
+        Authorization: credentials?.apiKey as string,
       },
       ...{ next: { revalidate: 0 } },
     });
