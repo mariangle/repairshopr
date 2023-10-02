@@ -1,12 +1,8 @@
 "use client"
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import * as z from "zod";
+import * as react from "react";
+
 import {
   Form,
   FormControl,
@@ -17,78 +13,94 @@ import {
 } from "@/components/ui/form"
 import { useToast } from "@/components/ui/use-toast"
 import { Input } from "@/components/ui/input"
-import { BsInfoCircle } from "react-icons/bs"
-import { Button } from "@/components/ui/button"
+import { TestTube2 as TestIcon } from "lucide-react"
+import { AuthButton } from "@/app/(auth)/login/components/auth-button";
 
-import { useForm } from "react-hook-form"
-import * as z from "zod";
-import { TestUser, TestCredentials} from "@/data/test-user-data"
+import { TestUser, TestCredentials} from "@/data/test-user"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { GetUser } from "@/actions/get-user"
+import { useForm } from "react-hook-form"
 import { useApiStore } from "@/hooks/use-api-store"
 import { useRouter } from "next/navigation"
 import { useStore } from "@/hooks/use-store"
 
 const formSchema = z.object({
-  subdomain: z.string().min(2).max(80),
+  subdomain: z.string().min(2).max(20),
   apiKey: z.string().min(2).max(80),
 })
 
 type LoginFormValues = z.infer<typeof formSchema>
 
 export const LoginForm = () => {
-  const router = useRouter();
   const { toast } = useToast();
+  const router = useRouter();
   const apiStore = useStore(useApiStore, (store) => store);
+  const [isLoading, setIsLoading] = react.useState<boolean>(false);
+  const [isTestLoading, setIsTestLoading] = react.useState<boolean>(false);
+  const form = useForm<LoginFormValues>({ resolver: zodResolver(formSchema)})
 
-  const form = useForm<LoginFormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      subdomain: "",
-      apiKey: ""
-    },
-  })
-  
+  react.useEffect(() => {
+    if (!apiStore) return;
+    if (apiStore?.isLogged) router.push("/tickets");
+  }, [apiStore?.isLogged]);  
+
   if (!apiStore) return null;
 
   const onSubmit = async (values: LoginFormValues) => {
-    const user = await GetUser(values.subdomain, values.apiKey)
+    setIsLoading(true);
+    const user = await GetUser(values)
 
-    if (user === null) {
-      toast({
+    const toastMessage = user
+    ? {
+        title: `Welcome, ${user.user_name}!`,
+      }
+    : {
         variant: "destructive",
-        title: "Oops! Something went wrong.", 
-        description: "Please verify your credentials.",
-      });    
-    } else {
-      toast({
-        title: "Success!",
-        description: "You have successfully logged in.",
-      });
-      apiStore.login(values, {
+        title: "Login Failed",
+        description: "Incorrect credentials. Please try again.",
+      };
+    // @ts-ignore
+    toast(toastMessage);
+
+    if (user !== null) {
+      const formattedUser = {
         isAdmin: user.admin,
         name: user.user_name,
-        email: user.user_email
-      }, false)
-      router.push("/tickets")
-    }    
+        email: user.user_email,
+      };
+  
+      apiStore?.login(values, formattedUser, false);
+      router.push("/tickets");
+    }
+
+    setIsLoading(false);
   }
   
-  const onTestUser = () => {
-    apiStore.login(TestCredentials, TestUser, true);
-    router.push("/tickets")
-  }
-
+  const onTestUser = async () => {
+    setIsTestLoading(true);
+  
+    await new Promise((resolve) => setTimeout(resolve, 1000)); 
+  
+    apiStore?.login(TestCredentials, TestUser, true);
+    router.push("/tickets");
+  
+    toast({
+      title: `Welcome, ${TestUser.name}!`,
+      description: "You have successfully logged in.",
+    });
+  
+    setIsTestLoading(false);
+  };
+  
   return (
-    <Card className="shadow-none ">
-      <CardHeader className="space-y-2 flex flex-col items-center my-4">
-        {}
-        <CardTitle className="text-xl">Sign in to repairshopr</CardTitle>
-        <CardDescription>Sign in using with your repairshopr subdomain and api key</CardDescription>
-      </CardHeader>
-      <CardContent className="grid gap-4">
+    <div className="max-w-sm w-full mx-auto p-2">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 text-left">
+            <div className="mt-2 text-xs border bg-secondary p-1 border-primary">
+              <code>
+                https://{form.watch("subdomain") || "your-subdomain"}.repairshopr.com/api/v1
+              </code>
+            </div>
             <FormField
               control={form.control}
               name="subdomain"
@@ -96,7 +108,7 @@ export const LoginForm = () => {
                 <FormItem>
                   <FormLabel>Subdomain</FormLabel>
                   <FormControl>
-                    <Input placeholder="subdomain" {...field}/>
+                    <Input placeholder="your-subdomain" {...field}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -109,35 +121,34 @@ export const LoginForm = () => {
                 <FormItem>
                   <FormLabel>API Key</FormLabel>
                   <FormControl>
-                    <Input placeholder="apieky" {...field} />
+                    <Input type="password" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button variant={"outline"} className="w-full">
-                Sign In
-            </Button>
+            <AuthButton disabled={isLoading}>
+                {isLoading ? "Signing in..." : "Sign In"}
+            </AuthButton>
           </form>
         </Form>
-        <div className="relative">
+        <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
             <span className="bg-background px-2 text-muted-foreground">
-              or continue as
+              or continue with
             </span>
           </div>
-        </div>        
-        <Button 
-          variant={"outline"} 
-          className="w-full gap-2"
-          onClick={onTestUser}>
-            Test User
-            <BsInfoCircle />
-        </Button>
-      </CardContent>
-    </Card>
+        </div>    
+        <AuthButton 
+          variant={"secondary"} 
+          onClick={onTestUser}
+          disabled={isTestLoading}>
+            <TestIcon className="mr-2 h-4 w-4" />
+            Test Credentials
+        </AuthButton>
+    </div>
   )
 }

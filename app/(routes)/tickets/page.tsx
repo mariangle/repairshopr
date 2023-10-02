@@ -2,6 +2,7 @@
 
 import { DataTable } from "./components/data-table"
 import { columns } from "./components/columns"
+import { LoadingScreen } from "@/components/loading";
 import { Separator } from "@/components/ui/separator";
 import { GetTickets } from "@/actions/get-tickets";
 
@@ -28,41 +29,42 @@ const IndexPage: React.FC<IndexPageProps> = ({
   
   react.useEffect(() => {
     const fetchData = async () => {
-
-      if (!apiStore) return null;
-
+      if (!apiStore) return;
+  
       if (apiStore.isTestUser) {
-        const data = await getTestData();
-        setData(data);
-        return;
-      }
-
-      if (apiStore.isLogged) {
-        const data = await GetTickets({
-          q: searchParams.query,
-          number: searchParams.number,
-        }, {
-          subdomain: apiStore.credentials.subdomain,
-          apiKey: apiStore.credentials.apiKey
-        });
-        setData(data);
+        setData(await getTestData());
+      } else if (apiStore.isLogged) {
+        setData(
+          await GetTickets(
+            {
+              q: searchParams.query,
+              number: searchParams.number,
+            },
+            {
+              subdomain: apiStore.credentials.subdomain,
+              apiKey: apiStore.credentials.apiKey,
+            }
+          )
+        );
       } else {
         router.push("/login");
       }
     };
+  
     fetchData();
-  }, [apiStore?.isLogged]);
-
-  if (!apiStore?.isLogged) return null;
+  }, [apiStore?.isLogged, searchParams]);
+  
+  if (!apiStore) return <LoadingScreen />;
 
   return (
     <div className="flex-1 flex-col space-y-8 p-4 md:flex">
-      <div className="flex items-center justify-between space-y-2">
-        <div className="w-full">
+       <div className="space-y-0.5">
           <h2 className="text-2xl font-bold tracking-tight">Tickets</h2>
-          <Separator className="mt-4"/>
+          <p className="text-muted-foreground">
+            Overview of your recent tickets.
+          </p>
         </div>
-      </div>
+        <Separator className="my-6" />
       <DataTable data={data} columns={columns} />
     </div>
   ) 

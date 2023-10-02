@@ -8,6 +8,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Customer } from "@/types/customer";
 import { createTableRow } from "@/components/ui/create-table-row";
+import { User } from "lucide-react";
 
 interface CustomerInfoProps {
   customer: Customer;
@@ -15,17 +16,18 @@ interface CustomerInfoProps {
 
 export const CustomerInfo: React.FC<CustomerInfoProps> = ({ customer }) => {
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle className="text-sm">CUSTOMER INFO</CardTitle>
+    <Card>
+      <CardHeader className="px-6 py-4">
+        <CardTitle className="text-sm flex items-center gap-2">Customer <User className="w-4 h-4"/></CardTitle>
       </CardHeader>
       <Separator />
       <CardContent>
-        <table className="grid grid-cols-3">
+        <table className="grid">
           <tbody className="pt-4">
             {createTableRow("Full Name", customer.fullname)}
             {createTableRow("Email", customer.email)}
             {createTableRow("Phone", customer.phone)}
+            {createTableRow("Business", customer.business_name)}
             {createTableRow(
               "Address",
               `${customer.address} ${customer.city} ${customer.state}`

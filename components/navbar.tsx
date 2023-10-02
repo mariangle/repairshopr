@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { buttonVariants } from "@/components/ui/button"
+import { Globe } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuItem,
@@ -27,9 +28,14 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="flex justify-between p-4 sticky top-0">
+    <nav className="flex justify-between p-4 sticky top-0 backdrop-blur-lg">
       <div>
-      { apiStore.isLogged && <Link href={"/tickets"}>{apiStore.credentials.subdomain}</Link>}
+      { apiStore.isLogged && (
+        <div className="flex items-center gap-1">
+          <Globe className="w-4 h-4"/>
+          <Link href={"/tickets"}>{apiStore.credentials.subdomain}</Link>
+        </div>
+      )}
       </div>
       <div className="flex gap-2 items-center">
         <ModeToggle />
@@ -37,13 +43,12 @@ export const Navbar = () => {
           <>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline">
+              <Button variant="outline" className="border-none px-2 hover:bg-none">
                   {apiStore.user.name}
-                  { apiStore.user.isAdmin && <Badge variant="outline">Admin</Badge>}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>{apiStore.user.email}</DropdownMenuLabel>
+              <DropdownMenuLabel>{apiStore.user.email}{' '}{ apiStore.user.isAdmin && <Badge variant="outline">Admin</Badge>}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={onLogout}>Logout</DropdownMenuItem>
             </DropdownMenuContent>

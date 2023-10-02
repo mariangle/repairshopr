@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { XCircleIcon, SearchIcon } from "lucide-react";
-
 import { GetTickets } from "@/actions/get-tickets";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,8 +49,9 @@ export const TicketSearchForm = () => {
       const queryString = qs.stringify(queryParams);
       
       try {
-        const tickets = await GetTickets({ q: data.query });
-    
+        const tickets = await GetTickets({ q: data.query }, apiStore?.credentials);
+        
+        console.log(tickets)
         if (!tickets?.length) {
           throw new Error("Ingen tickets blev fundet med disse oplysninger.");
         }
@@ -72,7 +72,7 @@ export const TicketSearchForm = () => {
     }  else {
       toast({
         title: "Oops.",
-        description: "This feature only works when logging in.",
+        description: "This feature doesn't work with test data.",
         variant: "destructive",
       });
     }
@@ -101,7 +101,7 @@ export const TicketSearchForm = () => {
               />
               <Button
                 type="button"
-                className="flex gap-2 items-center p-0 border-none"
+                className="flex gap-2 items-center p-0 border-none hover:bg-none"
                 variant={"outline"}
                 onClick={onReset}
                 disabled={isLoading}

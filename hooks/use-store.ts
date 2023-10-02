@@ -1,5 +1,6 @@
-// useStore.ts
 import { useState, useEffect } from 'react'
+
+// prevents hydration error when accessing local storage
 
 export const useStore = <T, F>(
   store: (callback: (state: T) => unknown) => unknown,

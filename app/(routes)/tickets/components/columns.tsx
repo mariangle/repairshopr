@@ -24,7 +24,7 @@ export const columns: ColumnDef<Ticket>[] = [
         <div className="flex gap-2 items-center">
           <Link 
             href={`/tickets/${row.original.id}`}
-            className={cn(buttonVariants({ variant: "link" }), "px-0")}
+            className={cn(buttonVariants({ variant: "link" }), "px-0 text-foreground")}
             >
             {row.getValue("number")}
           </Link>
@@ -42,13 +42,24 @@ export const columns: ColumnDef<Ticket>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />
     ),
-    cell: ({ row }) => <Badge variant={"outline"}>{row.original.status}</Badge>
+    cell: ({ row }) => <Badge variant={row.original.status === "New" ? "default": "secondary"}>{row.original.status}</Badge>
   },
   {
     accessorKey: "subject",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Subject" />
     ),
+  },
+  {
+    accessorKey: "comments",
+    header: "Latest Update",
+    cell: ({ row }) => {
+      return (
+        <div className="max-w-[350px] truncate">
+          <span>{row.original.comments[0]?.body}</span>
+        </div>
+      )
+    }
   },
   {
     accessorKey: "due_date",

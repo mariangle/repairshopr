@@ -20,6 +20,7 @@ interface TicketDialogProps {
   }
   
   export const TicketDialog: React.FC<TicketDialogProps> = ({ ticket }) => {
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -27,7 +28,7 @@ interface TicketDialogProps {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>#{ticket.number} <Badge>{ticket.status}</Badge></DialogTitle>
+          <DialogTitle className="flex items-center gap-2">#{ticket.number} <Badge>{ticket.status}</Badge></DialogTitle>
           <DialogDescription>
             {ticket.subject}
           </DialogDescription>

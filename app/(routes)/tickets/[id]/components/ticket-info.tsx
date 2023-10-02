@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Ticket } from "@/types/ticket";
 import { createTableRow } from "@/components/ui/create-table-row";
 import { format } from "@/lib/format";
+import { TagIcon } from "lucide-react";
 
 interface TicketInfoProps {
   ticket: Ticket;
@@ -16,13 +17,13 @@ interface TicketInfoProps {
 
 export const TicketInfo: React.FC<TicketInfoProps> = ({ ticket }) => {
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle className="text-sm">TICKET INFO</CardTitle>
+    <Card>
+      <CardHeader className="px-6 py-4">
+        <CardTitle className="text-sm flex items-center gap-2">Ticket <TagIcon className="w-4 h-4"/></CardTitle>
       </CardHeader>
       <Separator />
       <CardContent>
-        <table className="grid grid-cols-3">
+        <table className="grid">
           <tbody className="pt-4">
             {createTableRow("Status", ticket.status)}
             {createTableRow("Asignee", ticket.user.full_name)}
