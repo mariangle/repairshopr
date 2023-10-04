@@ -11,20 +11,19 @@ import { Badge } from "@/components/ui/badge"
 import { Comment } from "@/components/comment"
 import { buttonVariants } from "@/components/ui/button"
 import Link from "next/link"
-
-import { Info } from "lucide-react"
 import { Ticket } from "@/types/ticket"
 
 interface TicketDialogProps {
     ticket: Ticket;
+    children: React.ReactNode;
   }
   
-  export const TicketDialog: React.FC<TicketDialogProps> = ({ ticket }) => {
+  export const TicketDialog: React.FC<TicketDialogProps> = ({ ticket, children }) => {
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Info className="w-4 h-4 cursor-pointer"/>
+        {children}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

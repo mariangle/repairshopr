@@ -62,11 +62,6 @@ export const columns: ColumnDef<Ticket>[] = [
     }
   },
   {
-    accessorKey: "due_date",
-    header: "Due Date",
-    cell: ({ row }) => <FormattedDate date={formatDistanceToNow(new Date(row.original.due_date), { addSuffix: true })} />,
-  },
-  {
     id: "actions",
     cell: ({ row }) => <RowActions<Ticket> data={row.original}/>,
   },

@@ -16,7 +16,7 @@ import { getTestData } from "@/actions/get-test-data";
 interface IndexPageProps {
   searchParams: {
     query: string;
-    number: string;
+    number: string; 
   }
 }
 
@@ -34,18 +34,17 @@ const IndexPage: React.FC<IndexPageProps> = ({
       if (apiStore.isTestUser) {
         setData(await getTestData());
       } else if (apiStore.isLogged) {
-        setData(
-          await GetTickets(
-            {
-              q: searchParams.query,
-              number: searchParams.number,
-            },
-            {
-              subdomain: apiStore.credentials.subdomain,
-              apiKey: apiStore.credentials.apiKey,
-            }
-          )
-        );
+        const data = await GetTickets(
+          {
+            q: searchParams.query,
+            number: searchParams.number,
+          },
+          {
+            subdomain: apiStore.credentials.subdomain,
+            apiKey: apiStore.credentials.apiKey,
+          }
+        )
+        setData(data);
       } else {
         router.push("/login");
       }

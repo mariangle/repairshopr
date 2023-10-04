@@ -26,16 +26,20 @@ import {
 
 import { DataTableToolbar } from "./data-table-toolbar"
 import { DataTablePagination } from "./data-table-pagination"
+import { Ticket } from "@/types/ticket"
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[] | null;
+import Link from "next/link"
+import { TicketDialog } from "@/components/ticket-dialog"
+
+interface DataTableProps<TValue> {
+  columns: ColumnDef<Ticket, TValue>[]
+  data: Ticket[] | null;
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TValue>) {
 
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
@@ -93,7 +97,11 @@ export function DataTable<TData, TValue>({
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      <TicketDialog ticket={row.original}>
+                        <div className="w-full h-full">
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </div>
+                      </TicketDialog>
                     </TableCell>
                   ))}
                 </TableRow>

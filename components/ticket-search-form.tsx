@@ -43,39 +43,20 @@ export const TicketSearchForm = () => {
   });
 
   const onSubmit = async (data: SearchFormValues) => {
+    setisLoading(true);
     if (!apiStore?.isTestUser){
-      setisLoading(true);
       const queryParams = { query: data.query };
       const queryString = qs.stringify(queryParams);
-      
-      try {
-        const tickets = await GetTickets({ q: data.query }, apiStore?.credentials);
-        
-        console.log(tickets)
-        if (!tickets?.length) {
-          throw new Error("Ingen tickets blev fundet med disse oplysninger.");
-        }
-    
-        router.push(`/tickets?${queryString}`);
-      } catch (error) {
-        if (error instanceof Error){
-          toast({
-            title: "Ingen tickets fundet.",
-            description: error.message,
-            variant: "destructive",
-          });
-          router.push(`/tickets?${queryString}`);
-        }
-      } finally {
-        setisLoading(false);
-      }
-    }  else {
+      router.push(`/tickets?${queryString}`);
+
+    } else {
       toast({
         title: "Oops.",
         description: "This feature doesn't work with test data.",
         variant: "destructive",
       });
     }
+    setisLoading(false);
   };
 
   const onReset = () => {
