@@ -28,7 +28,6 @@ export const columns: ColumnDef<Ticket>[] = [
             >
             {row.getValue("number")}
           </Link>
-          <TicketDialog ticket={row.original}/>
         </div>
       )
     },
