@@ -1,17 +1,5 @@
-"use client"
-
-import { DataTable } from "./components/data-table"
-import { columns } from "./components/columns"
-import { LoadingScreen } from "@/components/loading";
 import { Separator } from "@/components/ui/separator";
-import { GetTickets } from "@/actions/get-tickets";
-
-import * as react from "react"
-import { Ticket } from "@/types/ticket";
-import { useApiStore } from "@/hooks/use-api-store";
-import { useRouter } from "next/navigation";
-import { useStore } from "@/hooks/use-store";
-import { getTestData } from "@/actions/get-test-data";
+import { ClientTable } from "@/components/client-table";
 
 interface IndexPageProps {
   searchParams: {
@@ -23,38 +11,7 @@ interface IndexPageProps {
 const IndexPage: React.FC<IndexPageProps> = ({ 
   searchParams 
 }) => {  
-  const router = useRouter();
-  const apiStore = useStore(useApiStore, (store) => store);
-    const [data, setData] = react.useState<Ticket[] | null>([])
   
-  react.useEffect(() => {
-    const fetchData = async () => {
-      if (!apiStore) return;
-  
-      if (apiStore.isTestUser) {
-        setData(await getTestData());
-      } else if (apiStore.isLogged) {
-        const data = await GetTickets(
-          {
-            q: searchParams.query,
-            number: searchParams.number,
-          },
-          {
-            subdomain: apiStore.credentials.subdomain,
-            apiKey: apiStore.credentials.apiKey,
-          }
-        )
-        setData(data);
-      } else {
-        router.push("/login");
-      }
-    };
-  
-    fetchData();
-  }, [apiStore?.isLogged, searchParams]);
-  
-  if (!apiStore) return <LoadingScreen />;
-
   return (
     <div className="flex-1 flex-col space-y-8 p-4 md:flex">
        <div className="space-y-0.5">
@@ -64,7 +21,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
           </p>
         </div>
         <Separator className="my-6" />
-      <DataTable data={data} columns={columns} />
+      <ClientTable searchParams={searchParams}/>
     </div>
   ) 
 }
