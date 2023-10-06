@@ -1,34 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <a href="https://ticketshopr.vercel.app">
+    <img alt="typing test screenshot" src="https://github.com/mariangle/ticketshopr/assets/124585244/5a29b87f-3737-42e9-8b2f-1ecad05eca2f">
+    <h1 align="center">ticketshopr</h1>
+  </a>
+</p>
 
-## Getting Started
+<p align="center">
+  Tailored RepairShopr App for ticket retrieval
+</p>
 
-First, run the development server:
+<p align="center">
+  <a href="#introduction"><strong>Introduction</strong></a> ·
+  <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
+  <a href="#license"><strong>License</strong></a>
+</p>
+<p align="center">
+  <a href="https://www.linkedin.com/in/maria-nguyen-le">
+    <img src="https://img.shields.io/badge/-MariaLe-blue?style=plastic-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/maria-nguyen-le/" alt="License" />
+  </a>
+</p>
+<br/>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<!-- ABOUT THE PROJECT -->
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Introduction
+TicketShopr is a lightweight web application specifically customized for a user from Cirbit who sought a more streamlined and efficient ticket management solution within RepairShopr. This user desired a modernized interface, the flexibility of dark and light themes, simplified ticket tables, and a comprehensive view of all ticket comments. TicketShopr was born from these requirements, offering a fresh approach to RepairShopr interactions.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You can explore TicketShopr with the provided test data to familiarize yourself with its features. For real-world usage, simply log in using your RepairShopr ``subdomain`` and ``API key`` to access your own data.
 
-## Learn More
+![image](https://github.com/mariangle/ticketshopr/assets/124585244/fd84e0bf-153e-48f5-989b-c13b192fc53e)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Next.js](https://nextjs.org/) - framework
+- [TypeScript](https://www.typescriptlang.org/) - language
+- [Tailwind](https://tailwindcss.comm) - CSS
+- [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction) - state management
+- [Vercel](https://vercel.com/) - hosting
+- [RepairShopr](https://api-docs.repairshopr.com/) - API
 
-## Deploy on Vercel
+<!-- GETTING STARTED )-->
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## To Do
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* [ ] Implement the ability to POST comments to tickets
+* [ ] Style the individual ticket page and ticket dialog for improved visual appeal
+* [ ] Consider additional refactoring and optimization
+
+## License
+
+<details>
+  <summary><b>MIT License</b></summary>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
