@@ -5,9 +5,7 @@ import { Table } from "@tanstack/react-table"
 
 import { Button } from "@/components/ui/button"
 import { DataTableViewOptions } from "./data-table-view-options"
-import { TicketSearchForm } from "@/components/ticket-search-form"
-
-import { DataTableFacetedFilter } from "./data-table-faceted-filter"
+import { TicketSearchForm } from "@/components/forms/ticket-search-form"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>

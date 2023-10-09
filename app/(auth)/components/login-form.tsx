@@ -14,7 +14,7 @@ import {
 import { useToast } from "@/components/ui/use-toast"
 import { Input } from "@/components/ui/input"
 import { TestTube2 as TestIcon } from "lucide-react"
-import { AuthButton } from "@/app/(auth)/login/components/auth-button";
+import { AuthButton } from "./auth-button";
 
 import { TestUser, TestCredentials} from "@/data/test-user"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -40,11 +40,8 @@ export const LoginForm = () => {
   const form = useForm<LoginFormValues>({ resolver: zodResolver(formSchema)})
 
   react.useEffect(() => {
-    if (!apiStore) return;
     if (apiStore?.isLogged) router.push("/tickets");
   }, [apiStore?.isLogged]);  
-
-  if (!apiStore) return null;
 
   const onSubmit = async (values: LoginFormValues) => {
     setIsLoading(true);

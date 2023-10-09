@@ -48,7 +48,7 @@ export const ClientTable: React.FC<ClientTableProps> = ({ searchParams }) => {
             console.error('Error fetching data:', error);
           }
         } else {
-          router.push('/login');
+          router.push('/');
         }
       };
   

@@ -6,16 +6,6 @@ import { ModeToggle } from "@/components/mode-toggle";
 
 const Login = () => {
 
-  const NavLink = ({ href, children } : { href: string, children: React.ReactNode}) => {
-    return (
-      <Link href={href} target="_blank" className={cn(
-        buttonVariants({ variant: "ghost" }), "px-2 text-xs",
-        )}>
-        {children}
-      </Link>
-    )
-  };
-
   return (
     <div className="grid lg:grid-cols-2 min-h-screen">
       <div className="w-full grid content-center mx-auto my-auto h-full relative">
@@ -43,6 +33,16 @@ const Login = () => {
       </div>
     </div>
   );
+};
+
+const NavLink = ({ href, children } : { href: string, children: React.ReactNode}) => {
+  return (
+    <Link href={href} target="_blank" className={cn(
+      buttonVariants({ variant: "ghost" }), "px-2 text-xs",
+      )}>
+      {children}
+    </Link>
+  )
 };
 
 export default Login;

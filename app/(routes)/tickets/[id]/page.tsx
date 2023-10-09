@@ -37,7 +37,7 @@ const Page = ({
             });
             setData(ticketData);
           } else {
-            router.push("/login")
+            router.push("/")
           }
         } catch (error) {
           console.error("Error fetching data:", error);
