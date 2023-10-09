@@ -6,8 +6,8 @@ export const commentSchema = z.object({
   subject: z.string(),
   body: z.string(),
   tech: z.string(),
-  hidden: z.string(),
-  do_not_email: z.string(),
+  hidden: z.boolean().optional(),
+  do_not_email: z.boolean().optional(),
 })
 
 export type Comment = z.infer<typeof commentSchema>

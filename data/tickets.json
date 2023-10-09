@@ -19,7 +19,8 @@
         "subject": "Initial Issue",
         "body": "iPad Battery Replacement",
         "tech": "Lars",
-        "hidden": "false"
+        "hidden": false,
+        "do_not_email": false
       },
       {
         "id": "2",
@@ -27,7 +28,9 @@
         "subject": "Update",
         "body": "Email has been sent to jane.smith@email.com",
         "tech": "Christian",
-        "hidden": "false"
+        "hidden": false,
+        "do_not_email": false
+
       },
       {
         "id": "3",
@@ -35,7 +38,8 @@
         "subject": "Diagnosis",
         "body": "Battery is fried",
         "tech": "Lars",
-        "hidden": "false"
+        "hidden": false,
+        "do_not_email": false
       }
     ],
     "user": {
@@ -77,7 +81,8 @@
         "subject": "Initial Issue",
         "body": "iPhone screen cracked",
         "tech": "Sarah",
-        "hidden": "false"
+        "hidden": false,
+        "do_not_email": false
       },
       {
         "id": "5",
@@ -85,7 +90,8 @@
         "subject": "Update",
         "body": "Customer prefers expedited service.",
         "tech": "Mike",
-        "hidden": "false"
+        "hidden": false,
+        "do_not_email": false
       }
     ],
     "user": {
@@ -127,7 +133,8 @@
         "subject": "Initial Issue",
         "body": "Washing machine not draining properly.",
         "tech": "David",
-        "hidden": "false"
+        "hidden": false,
+        "do_not_email": false
       },
       {
         "id": "7",
@@ -135,7 +142,8 @@
         "subject": "Diagnosis",
         "body": "Replaced the drain pump.",
         "tech": "David",
-        "hidden": "false"
+        "hidden": false,
+        "do_not_email": false
       },
       {
         "id": "8",
@@ -143,7 +151,8 @@
         "subject": "Resolution",
         "body": "Washing machine now working properly.",
         "tech": "David",
-        "hidden": "false"
+        "hidden": false,
+        "do_not_email": false
       }
     ],
     "user": {
