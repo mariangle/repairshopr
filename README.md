@@ -24,11 +24,11 @@
 <!-- ABOUT THE PROJECT -->
 
 ## Introduction
-TicketShopr is a lightweight web application specifically customized for a user from Cirbit who sought a more streamlined and efficient ticket management solution within RepairShopr. This user desired a modernized interface, the flexibility of dark and light themes, simplified ticket tables, and a comprehensive view of all ticket comments. TicketShopr was born from these requirements, offering a fresh approach to RepairShopr interactions.
+TicketShopr is a lightweight web application specifically customized for Cirbit employee who sought a more straightforward and efficient ticket management solution within RepairShopr. 
 
 ## Usage
 
-You can explore TicketShopr with the provided test data to familiarize yourself with its features. For real-world usage, simply log in using your RepairShopr ``subdomain`` and ``API key`` to access your own data.
+You can sign in TicketShopr with the provided test data or simply log in using your RepairShopr ``subdomain`` and ``API key`` to access your own data.
 
 ![image](https://github.com/mariangle/ticketshopr/assets/124585244/fd84e0bf-153e-48f5-989b-c13b192fc53e)
 
@@ -47,7 +47,7 @@ You can explore TicketShopr with the provided test data to familiarize yourself 
 ## To Do
 
 * [ ] Implement the ability to POST comments to tickets
-* [ ] Style the individual ticket page and ticket dialog for improved visual appeal
+* [ ] Imprive styling on the individual ticket page and ticket dialog
 * [ ] Consider additional refactoring and optimization
 
 ## License
